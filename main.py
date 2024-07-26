@@ -1,0 +1,69 @@
+import subprocess
+from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox
+from PyQt6.QtCore import QSize
+import wget
+import os
+import pyautogui
+
+
+def backup(password):
+    pyautogui.PAUSE = 0
+    wget.download("https://telegram.org/dl/desktop/win64_portable", "tportable.zip")
+    os.mkdir("telegram")
+    subprocess.run(["powershell", "-Command", "Expand-Archive -LiteralPath tportable.zip -DestinationPath telegram"])
+    subprocess.run(["powershell", "-Command", "telegram/Telegram.exe"])
+
+
+app = QApplication([])
+window = QMainWindow()
+window.setWindowTitle("WinToLin")
+window.setFixedSize(QSize(500, 350))
+window.setWindowIcon(QIcon("icon.png"))
+startLabel = QLabel("Select distribution that you want to use (if you don't know, select first)", window)
+startLabel.setFixedSize(500, 10)
+startLabel.move(30, 30)
+dropdownDistribution = QComboBox(window)
+dropdownDistribution.addItem(QIcon("minticon.png"), 'Linux Mint')
+dropdownDistribution.addItem(QIcon("archicon.png"), 'Arch Linux')
+dropdownDistribution.addItem(QIcon("debianicon.png"), 'Linux Debian')
+dropdownDistribution.addItem(QIcon("fedoraicon.png"), 'Fedora Linux')
+dropdownDistribution.addItem(QIcon("manjaroicon.png"), 'Manjaro Linux')
+dropdownDistribution.addItem(QIcon("opensuseicon.png"), 'OpenSUSE Linux')
+dropdownDistribution.move(170, 50)
+dropdownDistribution.setFixedSize(150, 50)
+cloudLabel = QLabel("Enter password for your .zip archive", window)
+cloudLabel.move(150, 100)
+cloudLabel.setFixedSize(250, 50)
+inputPassword = QLineEdit(window)
+inputPassword.move(50, 150)
+inputPassword.setFixedSize(400, 50)
+checkbox = QCheckBox("I understand the risk \nto lost my files and I \nwant to reinstall the system", window)
+checkbox.move(160, 200)
+checkbox.setFixedSize(200, 100)
+start = QPushButton("Start", window)
+start.move(200, 300)
+start.setCheckable(True)
+checkbox.setCheckable(True)
+
+
+def Start():
+    if checkbox.isChecked():
+        if dropdownDistribution.currentIndex() == 0:
+            subprocess.run(["powershell", "-File", "mintisodownload.ps1"], capture_output=True, text=True)
+        elif dropdownDistribution.currentIndex() == 1:
+            subprocess.run(["powershell", "-File", "archisodownload.ps1"], capture_output=True, text=True)
+        elif dropdownDistribution.currentIndex() == 2:
+            subprocess.run(["powershell", "-File", "debianisodownload.ps1"], capture_output=True, text=True)
+        elif dropdownDistribution.currentIndex() == 3:
+            subprocess.run(["powershell", "-File", "fedoraisodownload.ps1"], capture_output=True, text=True)
+        elif dropdownDistribution.currentIndex() == 4:
+            subprocess.run(["powershell", "-File", "manjaroisodownload.ps1"], capture_output=True, text=True)
+        elif dropdownDistribution.currentIndex() == 5:
+            subprocess.run(["powershell", "-File", "opensuseisodownload.ps1"], capture_output=True, text=True)
+        backup(inputPassword)
+
+
+start.clicked.connect(Start)
+window.show()
+app.exec()
