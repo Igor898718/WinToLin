@@ -1,6 +1,6 @@
 #No Tochka_S_Zapyatoy's
 import subprocess
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox, QWidget
 from PyQt6.QtCore import QSize
 import wget
@@ -66,8 +66,8 @@ ok.move(100, 50)
 
 infoWindow = QWidget()
 infoWindow.setWindowTitle("About WinToLin")
-infoWindow.setFixedSize(QSize(500, 500))
-infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linux. \nInstuctions: \n1.Select Linux distribution that you want to install \n2.Select files that you want to backup \n3.Create password for .zip archive with your files \n4.Press Start \n42.Wait 7.5 millions of years ;-)", infoWindow)
+infoWindow.setFixedSize(QSize(500, 370))
+infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linux. \nInstuctions: \n1.Select Linux distribution that you want to install \n2.Select files that you want to backup \n3.Create password for .zip archive with your files \n4.Press Start \n42.Wait 7.5 millions of years ;-) \n5.Follow to instructions of application \n\nMade by RubyLeoCompany", infoWindow)
 
 
 def Translate():
@@ -81,16 +81,18 @@ def Translate():
         info.setText("About")
         settingsWindow.setWindowTitle("WinToLin Settings")
         infoWindow.setWindowTitle("About WinToLin")
+        infoLabel.setText("WinToLin is an application for simply switch Windows to Linux. \nInstuctions: \n1.Select Linux distribution that you want to install \n2.Select files that you want to backup \n3.Create password for .zip archive with your files \n4.Press Start \n42.Wait 7.5 millions of years ;-) \n5.Follow to instructions of application \n\nMade by RubyLeoCompany")
     elif dropdownLanguage.currentIndex() == 1:
         languageLabel.setText("Выберите язык")
         startLabel.setText("Выберите желаемый дистрибутив Linux (если вы не знаете, выберите первый)")
         cloudLabel.setText("Задайте пароль .zip архиву \nс вашими данными")
-        checkbox.setText("Я осознаю риск \nпотери моих файлов \nи я хочу переустановить \nсистему")
+        checkbox.setText("Я осознаю риск \nпотери моих файлов \nи хочу переустановить \nсистему")
         start.setText("Старт")
         settings.setText("Настройки")
         info.setText("О программе")
         settingsWindow.setWindowTitle("Настройки WinToLin")
         infoWindow.setWindowTitle("О программе WinToLin")
+        infoLabel.setText("WinToLin - программа для простого прехода с Windows на Linux. \nИнструкция: \n1.Выберите дистрибутив Linux, который хотите установить \n2.Выберите файлы которые вы хотите сохранить \n3.Создайте пароль для .zip-архива с вашими файлами \n4.Нажмите Старт \n42.Подождите 7.5 миллионов лет ;-) \n5.Следуйте появившимся инструкциям \n\nСделано студией RubyLeoCompany")
 
 
 def ShowSettings():
