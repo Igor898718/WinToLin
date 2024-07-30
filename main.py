@@ -40,7 +40,9 @@ checkbox = QCheckBox("I understand the risk \nto lost my files and I \nwant to r
 checkbox.move(160, 200)
 checkbox.setFixedSize(200, 100)
 start = QPushButton("Start", window)
+settings = QPushButton("Settings", window)
 start.move(200, 300)
+settings.move(0, 0)
 start.setCheckable(True)
 checkbox.setCheckable(True)
 
