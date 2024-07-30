@@ -1,7 +1,7 @@
 #No Tochka_S_Zapyatoy's
 import subprocess
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox, QWidget
 from PyQt6.QtCore import QSize
 import wget
 import os
@@ -42,10 +42,23 @@ checkbox.move(160, 200)
 checkbox.setFixedSize(200, 100)
 start = QPushButton("Start", window)
 settings = QPushButton("Settings", window)
+settingsWindow = QWidget()
+settingsWindow.setWindowTitle("WinToLin Settings")
+settingsWindow.setFixedSize(QSize(300, 100))
+languageLabel = QLabel("Select language", settingsWindow)
+languageLabel.move(100, 0)
+dropdownLanguage = QComboBox(settingsWindow)
+dropdownLanguage.addItem(QIcon("Images/minticon.png"), 'English')
+dropdownLanguage.addItem(QIcon("Images/minticon.png"), 'Русский')
+dropdownLanguage.move(100, 20)
 start.move(200, 300)
 settings.move(0, 0)
 start.setCheckable(True)
 checkbox.setCheckable(True)
+
+
+def ShowSettings():
+    settingsWindow.show()
 
 
 def Start():
@@ -66,5 +79,6 @@ def Start():
 
 
 start.clicked.connect(Start)
+settings.clicked.connect(ShowSettings)
 window.show()
 app.exec()
