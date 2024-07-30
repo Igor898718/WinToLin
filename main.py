@@ -1,3 +1,4 @@
+#No Tochka_S_Zapyatoy's
 import subprocess
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox
@@ -16,11 +17,11 @@ def backup(password):
 app = QApplication([])
 window = QMainWindow()
 window.setWindowTitle("WinToLin")
-window.setFixedSize(QSize(500, 350))
+window.setFixedSize(QSize(500, 370))
 window.setWindowIcon(QIcon("Images/icon.png"))
 startLabel = QLabel("Select distribution that you want to use (if you don't know, select first)", window)
 startLabel.setFixedSize(500, 10)
-startLabel.move(30, 30)
+startLabel.move(30, 40)
 dropdownDistribution = QComboBox(window)
 dropdownDistribution.addItem(QIcon("Images/minticon.png"), 'Linux Mint')
 dropdownDistribution.addItem(QIcon("Images/archicon.png"), 'Arch Linux')
@@ -28,7 +29,7 @@ dropdownDistribution.addItem(QIcon("Images/debianicon.png"), 'Linux Debian')
 dropdownDistribution.addItem(QIcon("Images/fedoraicon.png"), 'Fedora Linux')
 dropdownDistribution.addItem(QIcon("Images/manjaroicon.png"), 'Manjaro Linux')
 dropdownDistribution.addItem(QIcon("Images/opensuseicon.png"), 'OpenSUSE Linux')
-dropdownDistribution.move(170, 50)
+dropdownDistribution.move(170, 60)
 dropdownDistribution.setFixedSize(150, 50)
 cloudLabel = QLabel("Enter password for your .zip archive", window)
 cloudLabel.move(150, 100)
