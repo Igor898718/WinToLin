@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox
 from PyQt6.QtCore import QSize
 import wget
 import os
+import sys
 
 
 def backup(password):
@@ -20,7 +21,7 @@ window.setWindowTitle("WinToLin")
 window.setFixedSize(QSize(500, 370))
 window.setWindowIcon(QIcon("Images/icon.png"))
 startLabel = QLabel("Select distribution that you want to use (if you don't know, select first)", window)
-startLabel.setFixedSize(500, 10)
+startLabel.setFixedSize(500, 15)
 startLabel.move(30, 40)
 dropdownDistribution = QComboBox(window)
 dropdownDistribution.addItem(QIcon("Images/minticon.png"), 'Linux Mint')
@@ -42,6 +43,12 @@ checkbox.move(160, 200)
 checkbox.setFixedSize(200, 100)
 start = QPushButton("Start", window)
 settings = QPushButton("Settings", window)
+start.move(200, 300)
+settings.move(0, 0)
+start.setCheckable(True)
+checkbox.setCheckable(True)
+
+
 settingsWindow = QWidget()
 settingsWindow.setWindowTitle("WinToLin Settings")
 settingsWindow.setFixedSize(QSize(300, 100))
@@ -51,10 +58,27 @@ dropdownLanguage = QComboBox(settingsWindow)
 dropdownLanguage.addItem(QIcon("Images/minticon.png"), 'English')
 dropdownLanguage.addItem(QIcon("Images/minticon.png"), 'Русский')
 dropdownLanguage.move(100, 20)
-start.move(200, 300)
-settings.move(0, 0)
-start.setCheckable(True)
-checkbox.setCheckable(True)
+ok = QPushButton("OK", settingsWindow)
+ok.move(100, 50)
+
+
+def Translate():
+    if dropdownLanguage.currentIndex() == 0:
+        languageLabel.setText("Select language")
+        startLabel.setText("Select distribution that you want to use (if you don't know, select first)")
+        cloudLabel.setText("Enter password for your .zip archive")
+        checkbox.setText("I understand the risk \nto lost my files and I \nwant to reinstall the system")
+        start.setText("Start")
+        settings.setText("Settings")
+        settingsWindow.setWindowTitle("WinToLin Settings")
+    elif dropdownLanguage.currentIndex() == 1:
+        languageLabel.setText("Выберите язык")
+        startLabel.setText("Выберите желаемый дистрибутив Linux (если вы не знаете, выберите первый)")
+        cloudLabel.setText("Задайте пароль .zip архиву \nс вашими данными")
+        checkbox.setText("Я осознаю риск \nпотери моих файлов \nи я хочу переустановить \nсистему")
+        start.setText("Старт")
+        settings.setText("Настройки")
+        settingsWindow.setWindowTitle("Настройки WinToLin")
 
 
 def ShowSettings():
@@ -80,5 +104,6 @@ def Start():
 
 start.clicked.connect(Start)
 settings.clicked.connect(ShowSettings)
+ok.clicked.connect(Translate)
 window.show()
 app.exec()
