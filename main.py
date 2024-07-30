@@ -4,11 +4,9 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox
 from PyQt6.QtCore import QSize
 import wget
 import os
-import pyautogui
 
 
 def backup(password):
-    pyautogui.PAUSE = 0
     wget.download("https://telegram.org/dl/desktop/win64_portable", "tportable.zip")
     os.mkdir("telegram")
     subprocess.run(["powershell", "-Command", "Expand-Archive -LiteralPath tportable.zip -DestinationPath telegram"])
