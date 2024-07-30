@@ -43,8 +43,10 @@ checkbox.move(160, 200)
 checkbox.setFixedSize(200, 100)
 start = QPushButton("Start", window)
 settings = QPushButton("Settings", window)
+info = QPushButton("About", window)
 start.move(200, 300)
 settings.move(0, 0)
+info.move(400, 0)
 start.setCheckable(True)
 checkbox.setCheckable(True)
 
@@ -62,6 +64,12 @@ ok = QPushButton("OK", settingsWindow)
 ok.move(100, 50)
 
 
+infoWindow = QWidget()
+infoWindow.setWindowTitle("About WinToLin")
+infoWindow.setFixedSize(QSize(500, 500))
+infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linux. \nInstuctions: \n1.Select Linux distribution that you want to install \n2.Select files that you want to backup \n3.Create password for .zip archive with your files \n4.Press Start \n42.Wait 7.5 millions of years ;-)", infoWindow)
+
+
 def Translate():
     if dropdownLanguage.currentIndex() == 0:
         languageLabel.setText("Select language")
@@ -70,7 +78,9 @@ def Translate():
         checkbox.setText("I understand the risk \nto lost my files and I \nwant to reinstall the system")
         start.setText("Start")
         settings.setText("Settings")
+        info.setText("About")
         settingsWindow.setWindowTitle("WinToLin Settings")
+        infoWindow.setWindowTitle("About WinToLin")
     elif dropdownLanguage.currentIndex() == 1:
         languageLabel.setText("Выберите язык")
         startLabel.setText("Выберите желаемый дистрибутив Linux (если вы не знаете, выберите первый)")
@@ -78,11 +88,17 @@ def Translate():
         checkbox.setText("Я осознаю риск \nпотери моих файлов \nи я хочу переустановить \nсистему")
         start.setText("Старт")
         settings.setText("Настройки")
+        info.setText("О программе")
         settingsWindow.setWindowTitle("Настройки WinToLin")
+        infoWindow.setWindowTitle("О программе WinToLin")
 
 
 def ShowSettings():
     settingsWindow.show()
+
+
+def ShowInfo():
+    infoWindow.show()
 
 
 def Start():
@@ -105,5 +121,6 @@ def Start():
 start.clicked.connect(Start)
 settings.clicked.connect(ShowSettings)
 ok.clicked.connect(Translate)
+info.clicked.connect(ShowInfo)
 window.show()
 app.exec()
