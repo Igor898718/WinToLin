@@ -4,7 +4,6 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox
 from PyQt6.QtCore import QSize
 import wget
 import os
-import pyautogui
 
 
 def backup(password):
