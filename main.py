@@ -1,7 +1,7 @@
 #No Tochka_S_Zapyatoy's
 import subprocess
 from PyQt6.QtGui import QIcon, QFont
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox, QWidget, QFileDialog
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox, QWidget, QFileDialog, QListView, QAbstractItemView
 from PyQt6.QtCore import QSize
 import wget
 import os
@@ -85,6 +85,9 @@ infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linu
 fileSelecter = QFileDialog()
 fileSelecter.setWindowTitle("Select files for backup with WinToLin")
 fileSelecter.setMinimumSize(500, 370)
+fileview = fileSelecter.findChild(QListView, 'listView')
+if fileview:
+    fileview.setSelectionMode(QAbstractItemView.MultiSelection)
 
 
 def Translate():
