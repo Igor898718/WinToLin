@@ -30,6 +30,7 @@ dropdownDistribution.addItem(QIcon("Images/debianicon.png"), 'Linux Debian')
 dropdownDistribution.addItem(QIcon("Images/fedoraicon.png"), 'Fedora Linux')
 dropdownDistribution.addItem(QIcon("Images/manjaroicon.png"), 'Manjaro Linux')
 dropdownDistribution.addItem(QIcon("Images/opensuseicon.png"), 'OpenSUSE Linux')
+dropdownDistribution.addItem(QIcon("Images/kaliicon.png"), 'Kali Linux')
 dropdownDistribution.move(170, 65)
 dropdownDistribution.setFixedSize(150, 42)
 cloudLabel = QLabel("Enter password for your .zip archive", window)
@@ -122,6 +123,8 @@ def Start():
             subprocess.run(["powershell", "-File", "manjaroisodownload.ps1"], capture_output=True, text=True)
         elif dropdownDistribution.currentIndex() == 5:
             subprocess.run(["powershell", "-File", "opensuseisodownload.ps1"], capture_output=True, text=True)
+        elif dropdownDistribution.currentIndex() == 6:
+            subprocess.run(["powershell", "-File", "kaliisodownload.ps1"], capture_output=True, text=True)
         backup(inputPassword)
 
 
