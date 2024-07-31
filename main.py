@@ -1,7 +1,7 @@
 #No Tochka_S_Zapyatoy's
 import subprocess
 from PyQt6.QtGui import QIcon, QFont
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox, QWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox, QLineEdit, QPushButton, QCheckBox, QWidget, QFileDialog
 from PyQt6.QtCore import QSize
 import wget
 import os
@@ -35,13 +35,16 @@ dropdownDistribution.addItem(QIcon("Images/windows.png"), 'Linux Wubuntu')
 dropdownDistribution.move(170, 65)
 dropdownDistribution.setFixedSize(150, 42)
 cloudLabel = QLabel("Enter password for your .zip archive", window)
-cloudLabel.move(150, 100)
+cloudLabel.move(150, 145)
 cloudLabel.setFixedSize(250, 50)
 inputPassword = QLineEdit(window)
-inputPassword.move(50, 150)
-inputPassword.setFixedSize(400, 50)
+inputPassword.move(50, 190)
+inputPassword.setFixedSize(400, 35)
+selectLabel = QLabel("Select files for backup", window)
+selectLabel.move(70, 110)
+selectLabel.setFixedSize(250, 50)
 checkbox = QCheckBox("I understand the risk \nto lost my files and I \nwant to reinstall the system", window)
-checkbox.move(160, 200)
+checkbox.move(160, 210)
 checkbox.setFixedSize(200, 100)
 slowDevice = QCheckBox("Slow device", window)
 slowDevice.move(350, 37)
@@ -49,9 +52,12 @@ slowDevice.setFixedSize(200, 100)
 start = QPushButton("Start", window)
 settings = QPushButton(QIcon("Images/settingsicon.jpg"),"Settings", window)
 info = QPushButton("About", window)
+selectFiles = QPushButton("Select files", window)
 start.move(200, 300)
 settings.move(0, 0)
 info.move(400, 0)
+selectFiles.move(320, 120)
+selectFiles.setFixedSize(110, 30)
 start.setCheckable(True)
 checkbox.setCheckable(True)
 
@@ -75,6 +81,10 @@ infoWindow.setFixedSize(QSize(500, 370))
 infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linux. \nInstuctions: \n1.Select Linux distribution that you want to install \n2.Select files that you want to backup \n3.Create password for .zip archive with your files \n4.Press Start \n42.Wait 7.5 millions of years ;-) \n5.Follow to instructions of application \n\nMade by RubyLeoCompany", infoWindow)
 
 
+fileSelecter = QFileDialog()
+fileSelecter.setWindowTitle("Select files for backup with WinToLin")
+
+
 def Translate():
     if dropdownLanguage.currentIndex() == 0:
         languageLabel.setText("Select language")
@@ -88,6 +98,9 @@ def Translate():
         settingsWindow.setWindowTitle("WinToLin Settings")
         infoWindow.setWindowTitle("About WinToLin")
         infoLabel.setText("WinToLin is an application for simply switch Windows to Linux. \nInstuctions: \n1.Select Linux distribution that you want to install \n2.Select files that you want to backup \n3.Create password for .zip archive with your files \n4.Press Start \n42.Wait 7.5 millions of years ;-) \n5.Follow to instructions of application \n\nMade by RubyLeoCompany")
+        selectFiles.setText("Select files")
+        selectLabel.setText("Select files for backup")
+        fileSelecter.setWindowTitle("Select files for backup with WinToLin")
     elif dropdownLanguage.currentIndex() == 1:
         languageLabel.setText("Выберите язык")
         startLabel.setText("Выберите желаемый дистрибутив Linux (если вы не знаете, выберите первый)")
@@ -100,6 +113,9 @@ def Translate():
         settingsWindow.setWindowTitle("Настройки WinToLin")
         infoWindow.setWindowTitle("О программе WinToLin")
         infoLabel.setText("WinToLin - программа для простого прехода с Windows на Linux. \nИнструкция: \n1.Выберите дистрибутив Linux, который хотите установить \n2.Выберите файлы, которые вы хотите сохранить \n3.Создайте пароль для .zip-архива с вашими файлами \n4.Нажмите Старт \n42.Подождите 7.5 миллионов лет ;-) \n5.Следуйте появившимся инструкциям \n\nСделано студией RubyLeoCompany")
+        selectFiles.setText("Выберите файлы")
+        selectLabel.setText("Выберите файлы для сохранения")
+        fileSelecter.setWindowTitle("Выберите файлы для сохранения через WinToLin")
 
 
 def ShowSettings():
@@ -108,6 +124,10 @@ def ShowSettings():
 
 def ShowInfo():
     infoWindow.show()
+
+
+def ShowFileSelecter():
+    fileSelecter.show()
 
 
 def Start():
@@ -135,5 +155,6 @@ start.clicked.connect(Start)
 settings.clicked.connect(ShowSettings)
 ok.clicked.connect(Translate)
 info.clicked.connect(ShowInfo)
+selectFiles.clicked.connect(ShowFileSelecter)
 window.show()
 app.exec()
