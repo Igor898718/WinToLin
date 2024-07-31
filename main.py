@@ -52,7 +52,7 @@ start.move(200, 300)
 settings.move(0, 0)
 info.move(400, 0)
 selectFiles.move(320, 120)
-selectFiles.setFixedSize(110, 30)
+selectFiles.setFixedSize(120, 30)
 start.setCheckable(True)
 checkbox.setCheckable(True)
 selectedFiles = []
