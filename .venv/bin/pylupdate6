@@ -1,4 +1,4 @@
-#!/home/rubyleo/WinToLin/.venv/bin/python
+#!/home/arch/PycharmProjects/WinToLin/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
