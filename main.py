@@ -52,7 +52,7 @@ start.move(200, 300)
 settings.move(0, 0)
 info.move(400, 0)
 selectFiles.move(320, 120)
-selectFiles.setFixedSize(120, 30)
+selectFiles.setFixedSize(110, 30)
 start.setCheckable(True)
 checkbox.setCheckable(True)
 selectedFiles = []
@@ -79,6 +79,7 @@ infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linu
 fileSelecter = QFileDialog()
 fileSelecter.setWindowTitle("Select files for backup with WinToLin")
 fileSelecter.setMinimumSize(500, 370)
+
 
 
 def Translate():
@@ -153,6 +154,11 @@ def Start():
         backup(inputPassword)
     
 
+#def FilesToZip():
+    
+
+
+#print(datetime.today().year+range(1, 100, 1))
 start.clicked.connect(Start)
 settings.clicked.connect(ShowSettings)
 ok.clicked.connect(Translate)
