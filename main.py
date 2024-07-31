@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QFrame, QComboBox
 from PyQt6.QtCore import QSize
 import wget
 import os
+import datetime
 import sys
 
 
@@ -83,6 +84,7 @@ infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linu
 
 fileSelecter = QFileDialog()
 fileSelecter.setWindowTitle("Select files for backup with WinToLin")
+fileSelecter.setMinimumSize(500, 370)
 
 
 def Translate():
@@ -149,8 +151,13 @@ def Start():
         elif dropdownDistribution.currentIndex() == 7:
             subprocess.run(["powershell", "-File", "wubuntuisodownload.ps1"], capture_output=True, text=True)
         backup(inputPassword)
+    
+
+#def FilesToZip():
+    
 
 
+#print(datetime.today().year+range(1, 100, 1))
 start.clicked.connect(Start)
 settings.clicked.connect(ShowSettings)
 ok.clicked.connect(Translate)
