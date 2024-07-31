@@ -7,13 +7,7 @@ import wget
 import os
 import datetime
 import sys
-
-
-def backup(password):
-    wget.download("https://telegram.org/dl/desktop/win64_portable", "tportable.zip")
-    os.mkdir("telegram")
-    subprocess.run(["powershell", "-Command", "Expand-Archive -LiteralPath tportable.zip -DestinationPath telegram"])
-    subprocess.run(["powershell", "-Command", "telegram/Telegram.exe"])
+from backup import *
 
 
 app = QApplication([])
@@ -61,7 +55,7 @@ selectFiles.move(320, 120)
 selectFiles.setFixedSize(110, 30)
 start.setCheckable(True)
 checkbox.setCheckable(True)
-
+selectedFiles = []
 
 settingsWindow = QWidget()
 settingsWindow.setWindowTitle("WinToLin Settings")
@@ -85,9 +79,7 @@ infoLabel = QLabel("WinToLin is an application for simply switch Windows to Linu
 fileSelecter = QFileDialog()
 fileSelecter.setWindowTitle("Select files for backup with WinToLin")
 fileSelecter.setMinimumSize(500, 370)
-fileview = fileSelecter.findChild(QListView, 'listView')
-if fileview:
-    fileview.setSelectionMode(QAbstractItemView.MultiSelection)
+
 
 
 def Translate():
@@ -133,6 +125,12 @@ def ShowInfo():
 
 def ShowFileSelecter():
     fileSelecter.show()
+    fileSelecter.setFileMode(QFileDialog.FileMode.Directory)
+    if fileSelecter.exec():
+            filenames = fileSelecter.selectedFiles()
+            if filenames:
+                selectedFiles.append(fileSelecter.selectedFiles())
+                print(selectedFiles)
 
 
 def Start():
