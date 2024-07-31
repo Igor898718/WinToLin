@@ -81,7 +81,6 @@ fileSelecter.setWindowTitle("Select files for backup with WinToLin")
 fileSelecter.setMinimumSize(500, 370)
 
 
-
 def Translate():
     if dropdownLanguage.currentIndex() == 0:
         languageLabel.setText("Select language")
@@ -154,11 +153,6 @@ def Start():
         backup(inputPassword)
     
 
-#def FilesToZip():
-    
-
-
-#print(datetime.today().year+range(1, 100, 1))
 start.clicked.connect(Start)
 settings.clicked.connect(ShowSettings)
 ok.clicked.connect(Translate)
