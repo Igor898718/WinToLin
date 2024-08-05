@@ -32,7 +32,6 @@ def backup(password):
     with TelegramClient(app_name, app_id, app_hash) as client:
         client: TelegramClient
         print('Sending data...')
-
         i = 0
         bytes_sent = 0
 
