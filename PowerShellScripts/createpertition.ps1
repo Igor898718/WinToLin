@@ -1,1 +1,0 @@
-New-Partition -DiskNumber 0 -Size 1gb -DriveLetter W
